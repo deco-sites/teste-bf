@@ -106,7 +106,7 @@ export default function FAQ(props: Props) {
 
   return (
     <>
-      <div class="w-full bg-base-200 px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
+      <div class="w-full bg-base-200 px-4 py-16 flex flex-col gap-4 lg:gap-8 lg:px-40">
         <div class="max-w-[1216px] container">
           <div class="flex flex-col justify-center items-center lg:flex-row gap-10 lg:gap-32">
             <div class="flex flex-col justify-center items-center lg:items-start lg:flex-col-reverse gap-2 lg:gap-10">
