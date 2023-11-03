@@ -106,9 +106,9 @@ export default function FAQ(props: Props) {
 
   return (
     <>
-      <div class="w-full bg-base-200 px-4 py-16 flex flex-col gap-4 lg:gap-8 lg:px-40">
-        <div class="max-w-[1216px] container">
-          <div class="flex flex-col justify-center items-center lg:flex-row gap-10 lg:gap-32">
+      <div class="w-full bg-base-200 lg:bg-base-100 px-4 lg:px-28 flex flex-col gap-4 lg:gap-8 ">
+        <div class="max-w-[1216px] container lg:border-t lg:border-base-300 py-16">
+          <div class="flex flex-col justify-center lg:justify-around items-center lg:flex-row gap-10">
             <div class="flex flex-col justify-center items-center lg:items-start lg:flex-col-reverse gap-2 lg:gap-10">
               {
                 image && (
@@ -149,7 +149,7 @@ export default function FAQ(props: Props) {
 
             </div>
 
-            <div class="join join-vertical w-full gap-3 lg:gap-6">
+            <div class="join join-vertical w-full max-w-xl gap-3 lg:gap-6">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>

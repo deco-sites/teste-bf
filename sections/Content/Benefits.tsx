@@ -60,7 +60,7 @@ export default function Benefits(
       >
         <div class="flex-none">
           <Icon
-            id={benefit.icon}
+            id={benefit.icon || "fireFlame"}
             class={reverse ? "text-base-100" : "text-primary"}
             width={36}
             height={36}
