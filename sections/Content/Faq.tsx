@@ -1,4 +1,7 @@
-import Header from "$store/components/ui/SectionHeader.tsx";
+import HeaderEditable from "$store/components/ui/SectionHeaderEditable.tsx";
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+
 
 export interface Question {
   question: string;
@@ -17,14 +20,17 @@ export interface Contact {
 }
 
 export interface Props {
+  image?: {
+    mobile: ImageWidget;
+    desktop?: ImageWidget;
+    altText: string;
+  };
+  /** @format html */
   title?: string;
+  /** @format html */
   description?: string;
   questions?: Question[];
   contact?: Contact;
-  layout?: {
-    variation?: "Compact" | "Full" | "Side to side";
-    headerAlignment?: "center" | "left";
-  };
 }
 
 const DEFAULT_PROPS = {
@@ -54,16 +60,21 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title text-lg font-medium">
-        {question}
-      </summary>
-      <div
-        class="collapse-content"
-        dangerouslySetInnerHTML={{ __html: answer }}
-      />
-    </details>
-  );
+    <>
+      <div className="relative collapse collapse-plus font-['Roboto_Flex'] lg:px-4 px-3 py-3 border border-primary bg-base-100">
+        <input class="min-h-12" type="radio" name="my-accordion-3" checked="checked" />
+        <h3 className="flex items-center collapse-title text-base text-base-content font-medium p-0 min-h-12 ">
+          {question}
+        </h3>
+        <div className="collapse-content">
+          <div
+            class="text-base-content text-sm"
+            dangerouslySetInnerHTML={{ __html: answer }}
+          />
+        </div>
+      </div>
+    </>
+  )
 }
 
 function Contact({ title, description, link }: Contact) {
@@ -90,64 +101,63 @@ export default function FAQ(props: Props) {
     title,
     description,
     contact,
-    layout,
+    image
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
     <>
-      {(!layout?.variation || layout?.variation === "Compact") && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
-          <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
-            <div class="join join-vertical w-full">
+      <div class="w-full bg-base-200 px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
+        <div class="max-w-[1216px] container">
+          <div class="flex flex-col justify-center items-center lg:flex-row gap-10 lg:gap-32">
+            <div class="flex flex-col justify-center items-center lg:items-start lg:flex-col-reverse gap-2 lg:gap-10">
+              {
+                image && (
+                  <figure class="relative">
+                    <Picture>
+                      <Source
+                        media="(max-width: 767px)"
+                        src={image?.mobile}
+                        width={310}
+                        height={95}
+                      />
+                      <Source
+                        media="(min-width: 768px)"
+                        src={image?.desktop ? image?.desktop : image?.mobile}
+                        width={310}
+                        height={95}
+                      />
+                      <img
+                        class="w-full object-cover lg:w-[310px] max-w-[310px]"
+                        sizes="(max-width: 640px) 100vw, 30vw"
+                        src={image?.mobile}
+                        alt={image?.altText}
+                        decoding="async"
+                        loading="lazy"
+                      />
+                    </Picture>
+                  </figure>
+                )
+              }
+              <div class="max-w-xs">
+                <HeaderEditable
+                  title={title || ""}
+                  description={description || ""}
+                  alignment={"left"}
+                  titleTextContainerWidth="full"
+                />
+              </div>
+
+            </div>
+
+            <div class="join join-vertical w-full gap-3 lg:gap-6">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
 
           <Contact {...contact} />
         </div>
-      )}
 
-      {layout?.variation === "Full" && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0">
-          <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
-            <div class="join join-vertical w-full">
-              {questions.map((question) => <Question {...question} />)}
-            </div>
-          </div>
-
-          <Contact {...contact} />
-        </div>
-      )}
-
-      {layout?.variation === "Side to side" && (
-        <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0">
-          <div class="order-1 lg:order-1">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
-            />
-          </div>
-          <div class="order-2 lg:order-3 lg:row-span-2">
-            <div class="join join-vertical">
-              {questions.map((question) => <Question {...question} />)}
-            </div>
-          </div>
-          <div class="order-3 lg:order-2">
-            <Contact {...contact} />
-          </div>
-        </div>
-      )}
+      </div>
     </>
   );
 }

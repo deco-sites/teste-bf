@@ -63,7 +63,7 @@ export default function HeaderBf({
 
                     <div className="w-full flex items-center justify-end pr-4 lg:pr-0 lg:justify-between">
                         <h1>
-                            <a className="normal-case text-xl" href="/#"><img className="w-[82] h-[26] lg:w-24 lg:h-8"  src={logo?.src} alt={logo?.alt} title={logo?.alt} preload="true" width={100} height={30}/></a>
+                            <a className="normal-case text-xl" href="/#"><span class="hidden">{logo?.alt}</span><img className="w-[82] h-[26] lg:w-24 lg:h-8"  src={logo?.src} alt={logo?.alt} title={logo?.alt} preload="true" width={100} height={30}/></a>
                         </h1>
                         <nav class="hidden lg:navbar lg:justify-end">
                         <ul className="flex justify-end gap-10 p-4 w-full min-h-full text-base-content bg-base-100">
