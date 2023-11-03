@@ -93,7 +93,7 @@ export default function Benefits(
         <>
             {!layout?.variation || layout?.variation === "Simple" || "Color reverse"
                 ? (
-                    <div class="w-full container px-4 py-8 flex flex-col gap-8 lg:gap-10 lg:py-10 lg:px-0">
+                    <div class="w-full container flex flex-col gap-8 lg:gap-10 px-4 py-16 lg:px-0">
                         {!injectedHtmlIsVoid && (<div class="w-full flex justify-center"><div class="rounded-[40px] border border-primary max-w-max px-3 py-1" dangerouslySetInnerHTML={{ __html: tagText}} /></div>)}
                         <HeaderEditable
                             title={title}

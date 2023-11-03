@@ -53,27 +53,23 @@ function Logos(props: Props) {
   const injectedHtmlIsVoid = tagText?.includes('data-mce-bogus="1"') || tagText === "";
 
   return (
-    <div class="w-full container px-4 py-8 flex flex-col gap-8 lg:gap-12 lg:py-10 lg:px-0">
-      {!injectedHtmlIsVoid && (<div class="w-full flex justify-center"><div class="rounded-[40px] border border-primary max-w-max px-3 py-1" dangerouslySetInnerHTML={{ __html: tagText}} /></div>)}
+    <div class="w-full container px-4 py-16 flex flex-col ">
+      {!injectedHtmlIsVoid && (<div class="w-full flex justify-center py-3 lg:py-6"><div class="rounded-[40px] border border-primary max-w-max px-3 py-1" dangerouslySetInnerHTML={{ __html: tagText}} /></div>)}
       <HeaderEditable
         title={title}
         description={description}
         alignment="left"
         titleTextContainerWidth="full"
       />
-      <div class="w-full text-center items-center">
+      <div class="w-full flex lg:flex-wrap justify-start lg:justify-center pt-10 lg:pt-12 gap-5 lg:gap-10 items-start lg:items-center overflow-x-auto lg:overflow-x-hidden ">
         {list.map((element) => (
-          <div class="w-36 lg:w-40 h-17 lg:h-20 px-4 lg:px-6 py-6 lg:py-4 inline-block align-middle">
-            <div class="flex w-full h-full items-center justify-center">
-              <Image
-                width={300}
-                height={300}
+          <Image
+                width={168}
+                height={54}
                 src={element.image}
                 alt={element.altText || ""}
-                class="max-w-full max-h-full"
+                class="w-2/5 max-w-[168px] max-h-full"
               />
-            </div>
-          </div>
         ))}
       </div>
     </div>

@@ -81,7 +81,7 @@ export default function BenefitsWithBanner(
 
     return (
         <>
-            <div class="w-full container max-w-[1216px] flex flex-col px-4 py-8 gap-10 lg:py-10 lg:px-0">
+            <div class="w-full container max-w-[1216px] flex flex-col px-4  gap-10 py-16 lg:px-0">
                 <div class="flex flex-col lg:flex-row-reverse lg:items-end gap-10 lg:gap-8">
                     <figure class="relative">
                         <Picture>
