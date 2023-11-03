@@ -70,7 +70,7 @@ export default function HeaderBf({
                             {
                                 items.map((item) => {
                                     return (
-                                        <li><a href={item.url} class="text-primary font-normal text-lg hover:text-primary-focus transition-colors duration-500">{item.name}</a></li>
+                                        <li><a href={item.url} class="text-primary font-normal text-lg hover:text-primary-focus transition-colors duration-500 font-['Roboto_Flex']">{item.name}</a></li>
                                     )
                                 })
                             }
