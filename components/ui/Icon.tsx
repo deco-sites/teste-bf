@@ -2,45 +2,10 @@ import { asset } from "$fresh/runtime.ts";
 import type { JSX } from "preact";
 
 export type AvailableIcons =
-  | "ArrowsPointingOut"
-  | "Bars3"
-  | "ChevronLeft"
-  | "ChevronRight"
-  | "ChevronUp"
-  | "ChevronDown"
-  | "CreditCard"
-  | "Deco"
-  | "Diners"
-  | "Discord"
-  | "Discount"
-  | "Elo"
-  | "Facebook"
-  | "FilterList"
-  | "Heart"
-  | "Instagram"
-  | "Linkedin"
-  | "Minus"
-  | "MapPin"
-  | "MagnifyingGlass"
-  | "Mastercard"
-  | "Message"
-  | "Phone"
-  | "Pix"
-  | "Plus"
-  | "QuestionMarkCircle"
-  | "Return"
-  | "Ruler"
-  | "ShoppingCart"
-  | "Star"
-  | "Tiktok"
-  | "Trash"
-  | "Truck"
-  | "Twitter"
-  | "User"
-  | "Visa"
-  | "WhatsApp"
-  | "XMark"
-  | "Zoom";
+  | "fireFlame"
+  | "HamburguerMenu"
+  | "Truck";
+
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

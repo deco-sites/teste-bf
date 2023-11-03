@@ -23,13 +23,13 @@ export interface MainColors {
   /**
    * @format color
    * @title Scondary
-   * @default #8C3D3D
+   * @default #252525
    */
   "secondary": string;
   /**
    * @format color
    * @title Tertiary
-   * @default #00FF7F
+   * @default #ffd900
    */
   "tertiary": string;
 }
@@ -317,7 +317,7 @@ const toVariables = (t: Theme): [string, string][] => {
 const defaultTheme = {
   "primary": "hsla(209, 28%, 21%, 1)",
   "primary-content": "hsla(0, 0%, 100%, 1)",
-  "secondary": "hsla(104, 18%, 46%, 1)",
+  "secondary": "hsl(0, 0%, 15%)",
   "secondary-content": "hsla(0, 0%, 100%, 1)",
   "tertiary": "hsla(8, 69%, 65%, 1)",
   "tertiary-content": "hsla(0, 0%, 100%, 1)",
