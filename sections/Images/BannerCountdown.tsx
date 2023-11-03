@@ -39,7 +39,7 @@ export default function BannerCountdown(props: BannerCountdownProps) {
   const { link, text, title, image, campaingTimer } = { ...DEFAULT_PROPS, ...props };
 
   return (
-    <div class="container lg:max-w-[1216px] px-4 pt-5 lg:pt-20 pb-10 lg:items-start">
+    <div class="container lg:max-w-[1216px] px-4 pt-5 lg:pt-20 lg:pb-10 lg:items-start">
       <div class="lg:hidden pb-10 pt-5">
         {campaingTimer?.expiresAt && (<CampaignTimer {...campaingTimer} text={campaingTimer.text ? campaingTimer.text : ""} />)}
       </div>
