@@ -28,6 +28,7 @@ export interface Props {
         title?: string;
         /** @format textarea */
         description?: string;
+        alertMensage?: string;
         form?: Form;
     };
     layout?: {
@@ -50,7 +51,7 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
     return (
         <div class="flex flex-col w-full gap-2">
             <div class="px-8 py-2 h-14 flex flex-col justify-end items-end gap-0.5 border-y-1 border-grey-300">
-            <span class="text-xs text-base-content">{targetMessage}</span>
+                <span class="text-xs text-base-content">{targetMessage}</span>
                 <div class="w-full h-5 rounded-full bg-base-300 relative top-2">
                     <div
                         class="h-5 rounded-full bg-primary max-w-full"
@@ -58,7 +59,7 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
                     >
                         <div
                             class="absolute -top-11 flex flex-col -translate-x-1/2 left-full"
-                            style={{ left: percent < 100 ? percent + "%" : "80%", alignItems: percent < 100 ? "center":"flex-end"}}
+                            style={{ left: percent < 100 ? percent + "%" : "80%", alignItems: percent < 100 ? "center" : "flex-end" }}
                         >
                             <span class="text-xs text-base-content mb-1 bg-base-100 text-center max-w-[140px] min-w-[140px]">
                                 {remaining > 0 ? howToMessage : "WOW!! agora é só enviar para ganhar!"}
@@ -67,7 +68,7 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     );
@@ -82,6 +83,7 @@ export default function FormBf({ content, layout, image }: Props) {
         emailSum: 0,
         phoneSum: 0,
     });
+    const [formSended, setFormSended] = useState(false)
 
     const verifyProgress: JSX.GenericEventHandler<HTMLInputElement> = (e) => {
 
@@ -146,13 +148,25 @@ export default function FormBf({ content, layout, image }: Props) {
 
             // precisa criar uma action nova pra atender todos os campos incluindo phoneNumber 
             await invoke.vtex.actions.newsletter.subscribe({ email, name });
+            setFormSended(true)
         } finally {
             loading.value = false;
+            setTimeout(() => { setFormSended(false) }, 3e3)
         }
     };
     return (
         <div id="formLeadBf" class="flex flex-col gap-4 lg:gap-56 justify-center items-center px-4 py-16 max-w-[1216px] container lg:flex-row">
+            {
+                formSended && (
+                    <div class="w-full z-30 flex justify-center lg:justify-start fixed bottom-4 px-4">
+                        <div className="flex alert alert-info max-w-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6 text-primary"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>{content.alertMensage || "Enviamos o cupom para o seu email 😊"}</span>
+                        </div>
+                    </div>
 
+                )
+            }
             <div class="flex flex-col gap-4 justify-center items-center text-center lg:text-left max-w-md">
                 {
                     image && (
@@ -217,16 +231,20 @@ export default function FormBf({ content, layout, image }: Props) {
                     pattern="[0-9]+"
                     onInput={verifyProgress}
                     required />
+                {
+                    !layout?.hideProgressBar && (
+                        <ProgressGift
+                            targetMessage="Receba seu cupom"
+                            target={3}
+                            total={stepCount.nameSum + stepCount.emailSum + stepCount.phoneSum}
+                        />
+                    )
+                }
 
-                <ProgressGift
-                    targetMessage="Receba seu cupom"
-                    target={3}
-                    total={stepCount.nameSum + stepCount.emailSum + stepCount.phoneSum}
-                />
                 {content?.form?.helpText && (
                     <div className="form-control px-8">
                         <label className="label cursor-pointer gap-2 justify-center items-start">
-                            <input type="checkbox" checked="checked" className="checkbox checkbox-primary text-base font-['Roboto_Flex']" />
+                            <input type="checkbox" checked="checked" className="checkbox checkbox-primary text-base font-['Roboto_Flex']" required />
                             <div
                                 class="text-sm"
                                 dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
