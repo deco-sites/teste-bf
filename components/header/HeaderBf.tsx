@@ -17,7 +17,7 @@ export interface Props {
 
 function Drawer({ children }: { children: ComponentChildren }) {
     return (
-        <div className="drawer h-screen lg:hidden">
+        <div className="drawer lg:hidden">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Page content here */}
