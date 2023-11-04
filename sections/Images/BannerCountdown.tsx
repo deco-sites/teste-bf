@@ -62,7 +62,7 @@ export default function BannerCountdown(props: BannerCountdownProps) {
                 height={690}
               />
               <img
-                class="w-full object-cover lg:w-[565px] max-w-[565px]"
+                class="w-full object-cover lg:w-[565px] max-w-[565px] h-[415px] lg:h-[690px]"
                 sizes="(max-width: 640px) 100vw, 30vw"
                 src={image?.mobile}
                 alt={image?.altText}
