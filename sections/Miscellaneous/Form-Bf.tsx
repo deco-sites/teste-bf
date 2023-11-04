@@ -38,7 +38,7 @@ export interface Props {
         mobile: ImageWidget;
         desktop?: ImageWidget;
         altText: string;
-      };
+    };
 }
 
 
@@ -49,16 +49,16 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
 
     return (
         <div class="flex flex-col w-full gap-2">
-            <div class="px-5 py-2 h-14 flex flex-col justify-end items-end gap-0.5 border-y-1 border-grey-300">
-                <span class="text-xs text-base-content">{targetMessage}</span>
+            <div class="px-8 py-2 h-14 flex flex-col justify-end items-end gap-0.5 border-y-1 border-grey-300">
+            <span class="text-xs text-base-content">{targetMessage}</span>
                 <div class="w-full h-5 rounded-full bg-base-300 relative top-2">
                     <div
                         class="h-5 rounded-full bg-primary max-w-full"
                         style={{ width: percent + "%" }}
                     >
                         <div
-                            class="absolute -top-12 flex flex-col items-center -translate-x-1/2 left-full"
-                            style={{ left: percent < 100 ? percent + "%" : "100%" }}
+                            class="absolute -top-11 flex flex-col -translate-x-1/2 left-full"
+                            style={{ left: percent < 100 ? percent + "%" : "80%", alignItems: percent < 100 ? "center":"flex-end"}}
                         >
                             <span class="text-xs text-base-content mb-1 bg-base-100 text-center max-w-[140px] min-w-[140px]">
                                 {remaining > 0 ? howToMessage : "WOW!! agora é só enviar para ganhar!"}
@@ -67,7 +67,7 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     );
@@ -154,34 +154,34 @@ export default function FormBf({ content, layout, image }: Props) {
         <div id="formLeadBf" class="flex flex-col gap-4 lg:gap-56 justify-center items-center px-4 py-16 max-w-[1216px] container lg:flex-row">
 
             <div class="flex flex-col gap-4 justify-center items-center text-center lg:text-left max-w-md">
-            {
-                image && (
-                  <figure class="relative">
-                    <Picture>
-                      <Source
-                        media="(max-width: 767px)"
-                        src={image?.mobile}
-                        width={240}
-                        height={137}
-                      />
-                      <Source
-                        media="(min-width: 768px)"
-                        src={image?.desktop ? image?.desktop : image?.mobile}
-                        width={403}
-                        height={230}
-                      />
-                      <img
-                        class="w-full object-cover lg:w-[403px] max-w-[403px]"
-                        sizes="(max-width: 640px) 100vw, 30vw"
-                        src={image?.mobile}
-                        alt={image?.altText}
-                        decoding="async"
-                        loading="lazy"
-                      />
-                    </Picture>
-                  </figure>
-                )
-              }
+                {
+                    image && (
+                        <figure class="relative">
+                            <Picture>
+                                <Source
+                                    media="(max-width: 767px)"
+                                    src={image?.mobile}
+                                    width={240}
+                                    height={137}
+                                />
+                                <Source
+                                    media="(min-width: 768px)"
+                                    src={image?.desktop ? image?.desktop : image?.mobile}
+                                    width={403}
+                                    height={230}
+                                />
+                                <img
+                                    class="w-full object-cover lg:w-[403px] max-w-[403px]"
+                                    sizes="(max-width: 640px) 100vw, 30vw"
+                                    src={image?.mobile}
+                                    alt={image?.altText}
+                                    decoding="async"
+                                    loading="lazy"
+                                />
+                            </Picture>
+                        </figure>
+                    )
+                }
                 {content?.title && (
                     <h2 class="text-3xl lg:text-4xl font-bold text-primary ">
                         {content?.title}
