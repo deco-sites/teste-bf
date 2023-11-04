@@ -64,7 +64,7 @@ function ProgressGift({ target, total, targetMessage, howToMessage = "Continue p
                             <span class="text-xs text-base-content mb-1 bg-base-100 text-center max-w-[140px] min-w-[140px]">
                                 {remaining > 0 ? howToMessage : "WOW!! agora é só enviar para ganhar!"}
                             </span>
-                            <div class="relative w-0 h-0 border-t-8 border-r-8 border-l-8 border-solid border-l-transparent border-r-transparent border-t-primary"></div>
+                            <div class="relative w-0 h-0 border-t-8 border-r-8 border-l-8 border-solid border-l-transparent border-r-transparent border-t-primary animate-bounce"></div>
                         </div>
                     </div>
                 </div>
