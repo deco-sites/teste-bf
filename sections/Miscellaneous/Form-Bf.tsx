@@ -83,7 +83,8 @@ export default function FormBf({ content, layout, image }: Props) {
         emailSum: 0,
         phoneSum: 0,
     });
-    const [formSended, setFormSended] = useState(false)
+    const [formSended, setFormSended] = useState(false);
+    const [active, setActive] = useState(false);
 
     const verifyProgress: JSX.GenericEventHandler<HTMLInputElement> = (e) => {
 
@@ -148,16 +149,17 @@ export default function FormBf({ content, layout, image }: Props) {
 
             // precisa criar uma action nova pra atender todos os campos incluindo phoneNumber 
             await invoke.vtex.actions.newsletter.subscribe({ email, name });
-            setFormSended(true)
+            setFormSended(true);
+            setActive(true);
         } finally {
+            setTimeout(() => { setActive(false) }, 4e3)
             loading.value = false;
-            setTimeout(() => { setFormSended(false) }, 3e3)
         }
     };
     return (
         <div id="formLeadBf" class="flex flex-col gap-4 lg:gap-56 justify-center items-center px-4 py-16 max-w-[1216px] container lg:flex-row">
             {
-                formSended && (
+                active && (
                     <div class="w-full z-30 flex justify-center lg:justify-start fixed bottom-4 px-4">
                         <div className="flex alert alert-info max-w-md">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6 text-primary"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -254,7 +256,7 @@ export default function FormBf({ content, layout, image }: Props) {
                 )}
                 <button
                     type="submit"
-                    class="btn btn-primary w-64 h-14 rounded-[80px] disabled:loading"
+                    class={`btn btn-primary w-64 h-14 rounded-[80px] disabled:loading ${formSended ? "btn-disabled":""}`}
                     disabled={loading}
                 >
                     {content?.form?.buttonText || "Inscrever"}
