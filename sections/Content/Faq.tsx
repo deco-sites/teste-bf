@@ -61,8 +61,8 @@ const DEFAULT_PROPS = {
 function Question({ question, answer }: Question) {
   return (
     <>
-      <div className="relative collapse collapse-plus font-['Roboto_Flex'] lg:px-4 px-3 py-3 border border-primary bg-base-100">
-        <input class="min-h-12" type="radio" name="my-accordion-3" checked="checked" />
+      <div id={question} className="relative collapse collapse-plus font-['Roboto_Flex'] lg:px-4 px-3 py-3 border border-primary bg-base-100">
+        <input aria-labelledby={question} class="min-h-12" type="radio" name="my-accordion-3" checked="checked" />
         <h3 className="flex items-center collapse-title text-base text-base-content font-medium p-0 min-h-12 ">
           {question}
         </h3>
