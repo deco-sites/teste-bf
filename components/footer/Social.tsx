@@ -2,12 +2,10 @@ import Icon, { AvailableIcons } from "$store/components/ui/Icon.tsx";
 
 export interface SocialItem {
   label:
-    | "Discord"
+    | "Yutube"
     | "Facebook"
     | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+    | "Whatsapp";
   link: string;
 }
 

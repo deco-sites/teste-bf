@@ -4,7 +4,12 @@ import type { JSX } from "preact";
 export type AvailableIcons =
   | "fireFlame"
   | "HamburguerMenu"
+  | "Facebook" 
+  | "Instagram"
+  | "Yutube"
+  | "Whatsapp"
   | "Truck";
+  
 
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {

@@ -1,6 +1,4 @@
 
-import HeaderEditable from "$store/components/ui/SectionHeaderEditable.tsx";
-
 export interface Links {
     text: string;
     href: string;

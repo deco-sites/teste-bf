@@ -24,12 +24,10 @@ export type Section = {
 
 export interface SocialItem {
   label:
-    | "Discord"
-    | "Facebook"
-    | "Instagram"
-    | "Linkedin"
-    | "Tiktok"
-    | "Twitter";
+  | "Yutube"
+  | "Facebook"
+  | "Instagram"
+  | "Whatsapp";
   link: string;
 }
 
@@ -320,19 +318,14 @@ function Footer({
         )}
         {layout?.variation == "Variation 5" && (
           <div class="flex flex-col gap-10">
-            {_newsletter}
-            {layout?.hide?.newsletter ? <></> : <Divider />}
-            {_logo}
-            <div class="flex flex-col md:flex-row gap-10 lg:gap-20 md:justify-between">
-              {_sectionLinks}
-              <div class="flex flex-col gap-10 md:w-2/5 lg:pl-10">
-                {_payments}
-                {_social}
-                {_apps}
+            
+            <div class="flex items-center first:items-center flex-col lg:flex-row justify-between">
+              {_logo}
+              <div class="flex items-center lg:items-end flex-col gap-10 md:w-2/5 lg:pl-10">
+              {_social}
               </div>
             </div>
-            <Divider />
-            <div class="flex flex-col-reverse md:flex-row md:justify-between gap-10 md:items-center">
+            <div class="flex flex-col lg:flex-row items-center justify-between gap-2 py-4">
               <PoweredByDeco />
               <div class="flex flex-col md:flex-row gap-10 md:items-center">
                 {_links}
